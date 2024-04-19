@@ -4,15 +4,17 @@
     <div class="container">
 	<div class="screen">
 		<div class="screen__content">
-			<form class="login">
-			<h1>halo {{ firstName }}</h1>
+			<form class="login" @submit.prevent="onLogin()">
+			<h1>silahkan login</h1>
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="User name / Email">
+					<input type="text" class="login__input" placeholder="Username" v-model="username">
+					<h5 v-if="errorUsername.length > 0" class="error">{{ errorUsername }}</h5>
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password">
+					<input type="password" class="login__input" placeholder="Password" v-model="password">
+					<h5 v-if="errorPassword.length > 0" class="error">{{ errorPassword }}</h5>
 				</div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
@@ -133,13 +135,13 @@ body {
 }
 
 .login__field {
-	padding: 20px 0px;	
+	padding: 15px 1px;	
 	position: relative;	
 }
 
 .login__icon {
 	position: absolute;
-	top: 30px;
+	top: 25px;
 	color: #7875B5;
 }
 
@@ -147,7 +149,7 @@ body {
 	border: none;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;
-	padding: 10px;
+	padding: 7px;
 	padding-left: 24px;
 	font-weight: 700;
 	width: 75%;
@@ -218,16 +220,31 @@ body {
 .social-login__icon:hover {
 	transform: scale(1.5);	
 }
+
+.error{
+	color: red;
+}
+
 </style>
 
 
 <script>
-import { mapState } from 'vuex'
+import { validateUsername, validatePassword }  from '../services/SignupValidations'
 export default {
-	computed: {
-		...mapState('auth', {
-			firstName:(state) => state.name
-		})
-	}
+	data() {
+		return {
+			username: '',
+			password: '',
+			errorUsername:'',
+			errorPassword:''
+		}
+	},
+	methods: {
+		onLogin() {
+			this.errorUsername = validateUsername(this.username)
+			this.errorPassword = validatePassword(this.password)
+			// alert("woy")
+		}
+	},
 }
 </script>

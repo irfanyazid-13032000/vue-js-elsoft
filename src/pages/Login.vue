@@ -229,7 +229,8 @@ body {
 
 
 <script>
-import { validateUsername, validatePassword }  from '../services/SignupValidations'
+import { validateUsername, validatePassword } from '../services/SignupValidations'
+import axios from 'axios'
 export default {
 	data() {
 		return {
@@ -243,7 +244,36 @@ export default {
 		onLogin() {
 			this.errorUsername = validateUsername(this.username)
 			this.errorPassword = validatePassword(this.password)
-			// alert("woy")
+			if (this.errorUsername || this.errorPassword) {
+				return
+			}
+
+			axios.post('https://core.api.elsoft.id/portal/api/auth/signin',
+			{
+  "UserName": "testcase",
+  "Password": "testcase123",
+  "Company": "d3170153-6b16-4397-bf89-96533ee149ee",
+  "browserInfo": {
+    "chrome": true,
+    "chrome_view": false,
+    "chrome_mobile": false,
+    "chrome_mobile_ios": false,
+    "safari": false,
+    "safari_mobile": false,
+    "msedge": false,
+    "msie_mobile": false,
+    "msie": false
+  },
+  "osNameInfo": {
+    "name": "Mac",
+    "version": "10.15",
+    "platform": ""
+  },
+  "Device": "web_1703742830368",
+}).then(function (response) {
+    console.log(response);
+  })
+			// alert("wah udah bener ngisinya!!!")
 		}
 	},
 }

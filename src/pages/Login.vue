@@ -5,6 +5,7 @@
 	<div class="screen">
 		<div class="screen__content">
 			<form class="login">
+			<h1>halo {{ firstName }}</h1>
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
 					<input type="text" class="login__input" placeholder="User name / Email">
@@ -221,7 +222,12 @@ body {
 
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  
+	computed: {
+		...mapState('auth', {
+			firstName:(state) => state.name
+		})
+	}
 }
 </script>

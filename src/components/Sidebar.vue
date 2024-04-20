@@ -5,9 +5,17 @@ export default {
       isOpen: true
     }
   },
+  computed:{
+    selectMenu(){
+      return this.$store.state.selectedMenu
+    }
+  },
   methods: {
     toggleSidebar() {
       this.isOpen = !this.isOpen;
+    },
+    changeSelectedMenu(menu) {
+      this.$store.state.selectedMenu = menu
     }
   }
 }
@@ -24,22 +32,23 @@ export default {
         <ul class="pt-6 mt-9">
 
               <a>
-                <li class="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home h-6 w-6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                    <span class="open origin-left duration-200" :class="isOpen ? '' : 'd-none'">master</span>
+                <li :class="selectMenu == `master` ? 'active' :''"  class="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md" @click="changeSelectedMenu('master')">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home h-6 w-6" :class="{'active': selectMenu === 'master'}"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <span class="open origin-left duration-200" :class="{'':isOpen,'d-none':!isOpen,'active': selectMenu === 'master'}">master</span>
                 </li>
               </a>
               <a>
-                <li class="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase h-6 w-6"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                    <span class="open origin-left duration-200" :class="isOpen ? '' : 'd-none'">stock</span>
+                <li :class="selectMenu == `stock` ? 'active' :''" class="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md" @click="changeSelectedMenu('stock')">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase h-6 w-6" :class="{'active': selectMenu === 'stock'}"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span class="open origin-left duration-200" :class="{'':isOpen,'d-none':!isOpen,'active': selectMenu === 'stock'}">stock</span>
                 </li>
               </a>
         </ul>
       </div>
     
      <div style="flex: 1; padding: 1.75rem;">
-      has
+      <slot>jiah</slot>
+      <h2>{{ selectMenu }}</h2>
     </div>
     </div>
 
@@ -50,6 +59,11 @@ export default {
   /* Sidebar Container */
 .flex {
   display: flex;
+}
+
+.active{
+   background-color: #f7fafc;
+   color: black;
 }
 
 .d-none{

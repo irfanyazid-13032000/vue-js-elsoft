@@ -1,10 +1,7 @@
 import { createStore } from 'vuex';
-import auth from './auth/index'
 
-const store = createStore({
-  modules: {
-    auth
+export const store = createStore({
+  state: {
+    selectedMenu: 'inventory' // Inisialisasi selectedMenu dengan nilai 'inventory'
   }
-})
-
-export default store
+});

@@ -12,6 +12,11 @@ export default {
 <Modal>
   <table style="border-spacing:7px; width:100%">
     <tr>
+      <td style="border-bottom: 3px black solid; padding-bottom:4px" colspan="2">
+        <h2>CREATE ITEM</h2>
+      </td>
+    </tr>
+    <tr>
       <td>
         <label for="company" class="block text-sm text-gray-700">company:</label>
         <h4>testcase</h4>

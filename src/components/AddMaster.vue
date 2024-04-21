@@ -78,6 +78,13 @@ export default {
     </tr>
   </table>
 </Modal>
+
+
+
+
+
+
+
 </template>
 
 <style>

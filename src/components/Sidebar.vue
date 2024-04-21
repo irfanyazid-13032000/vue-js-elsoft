@@ -48,7 +48,6 @@ export default {
     
      <div style="flex: 1; padding: 1.75rem;">
       <slot>jiah</slot>
-      <h2>{{ selectMenu }}</h2>
     </div>
     </div>
 

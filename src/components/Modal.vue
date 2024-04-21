@@ -53,7 +53,7 @@ export default {
 }
 
 .w-400px {
-    width: 400px;
+    width: 800px;
 }
 
 .bg-white {

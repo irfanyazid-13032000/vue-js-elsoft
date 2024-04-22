@@ -1,43 +1,55 @@
 <template>
   <div>
      <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+		 <div class="bungkus">
     <div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="login" @submit.prevent="onLogin()">
-			<h1>silahkan login</h1>
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="Username" v-model="username">
-					<h5 v-if="errorUsername.length > 0" class="error">{{ errorUsername }}</h5>
+			<div class="screen">
+				<div class="screen__content">
+					<form class="login" @submit.prevent="onLogin()">
+					<h1>silahkan login</h1>
+						<div class="login__field">
+							<i class="login__icon fas fa-user"></i>
+							<input type="text" class="login__input" placeholder="Username" v-model="username">
+							<h5 v-if="errorUsername.length > 0" class="error">{{ errorUsername }}</h5>
+						</div>
+						<div class="login__field">
+							<i class="login__icon fas fa-lock"></i>
+							<input type="password" class="login__input" placeholder="Password" v-model="password">
+							<h5 v-if="errorPassword.length > 0" class="error">{{ errorPassword }}</h5>
+						</div>
+						<button class="button login__submit">
+							<span class="button__text">Log In Now</span>
+							<i class="button__icon fas fa-chevron-right"></i>
+						</button>				
+					</form>
+					<div class="social-login">
+						<h3>log in via</h3>
+						<div class="social-icons">
+							<a href="#" class="social-login__icon fab fa-instagram"></a>
+							<a href="#" class="social-login__icon fab fa-facebook"></a>
+							<a href="#" class="social-login__icon fab fa-twitter"></a>
+						</div>
+					</div>
 				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" v-model="password">
-					<h5 v-if="errorPassword.length > 0" class="error">{{ errorPassword }}</h5>
-				</div>
-				<button class="button login__submit">
-					<span class="button__text">Log In Now</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			<div class="social-login">
-				<h3>log in via</h3>
-				<div class="social-icons">
-					<a href="#" class="social-login__icon fab fa-instagram"></a>
-					<a href="#" class="social-login__icon fab fa-facebook"></a>
-					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				<div class="screen__background">
+					<span class="screen__background__shape screen__background__shape4"></span>
+					<span class="screen__background__shape screen__background__shape3"></span>		
+					<span class="screen__background__shape screen__background__shape2"></span>
+					<span class="screen__background__shape screen__background__shape1"></span>
+				</div>		
+			</div>
+		</div>
+		<div style="display:flex; position:absolute; align-items:center;justify-content:center; height:100vh;width:100%;background-color:black;z-index:100;opacity:.8;top:0;left:0">
+			<div style="background-color:white;z-index:11;width:400px;height:90px;border-radius:10px">
+				<h1 style="text-align: center; padding:5px">Username Atau Password Salah !</h1>
+			</div>
+			<div style="position:absolute; top:0;right:0">
+				<div style="background-color:white;width:100px;height:100px;display:flex;align-items:center;justify-content:center;z-index:12">
+				<p style="font-size:100px;font-weight:bold">X</p>
 				</div>
 			</div>
 		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
-</div>
+		 </div>
   </div>
 </template>
 
@@ -55,11 +67,15 @@ body {
 	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
 }
 
+.bungkus{
+	height: 100vh;
+}
+
 .container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
+	height: 100%;
 }
 
 .screen {		
@@ -248,32 +264,37 @@ export default {
 				return
 			}
 
-			axios.post('https://core.api.elsoft.id/portal/api/auth/signin',
-			{
-  "UserName": "testcase",
-  "Password": "testcase123",
-  "Company": "d3170153-6b16-4397-bf89-96533ee149ee",
-  "browserInfo": {
-    "chrome": true,
-    "chrome_view": false,
-    "chrome_mobile": false,
-    "chrome_mobile_ios": false,
-    "safari": false,
-    "safari_mobile": false,
-    "msedge": false,
-    "msie_mobile": false,
-    "msie": false
-  },
-  "osNameInfo": {
-    "name": "Mac",
-    "version": "10.15",
-    "platform": ""
-  },
-  "Device": "web_1703742830368",
-}).then(function (response) {
-    console.log(response);
-  })
-			// alert("wah udah bener ngisinya!!!")
+		axios.post('https://core.api.elsoft.id/portal/api/auth/signin',
+				{
+					"UserName": this.username,
+					"Password": this.password,
+					"Company": "d3170153-6b16-4397-bf89-96533ee149ee",
+					"browserInfo": {
+						"chrome": true,
+						"chrome_view": false,
+						"chrome_mobile": false,
+						"chrome_mobile_ios": false,
+						"safari": false,
+						"safari_mobile": false,
+						"msedge": false,
+						"msie_mobile": false,
+						"msie": false
+					},
+					"osNameInfo": {
+						"name": "Mac",
+						"version": "10.15",
+						"platform": ""
+					},
+					"Device": "web_1703742830368",
+				}).then(function (response) {
+						console.log(response);
+				})
+			.catch(function (err) {
+						if (err.response.status == 401) {
+							alert("username atau password salah !!!")
+						}
+						console.log(err.response.status)
+					})
 		}
 	},
 }

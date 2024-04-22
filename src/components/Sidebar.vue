@@ -95,7 +95,7 @@ export default {
 }
 
 .bg-dark-purple {
-  background-color: #4b5563; /* Tailwind CSS: bg-dark-purple */
+  background-color: #9440c4;
 }
 
 .relative {

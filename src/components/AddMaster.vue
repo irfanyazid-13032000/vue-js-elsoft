@@ -7,6 +7,7 @@ export default {
   methods: {
     closeModal() {
       this.$store.state.isAddMasterModalOpen = false
+      this.$store.state.isOpenTipsModal = false
     },
     changeSelectedTipsModal(inputName) {
       this.$store.state.isOpenTipsModal = true

@@ -50,14 +50,14 @@ export default {
     <tr>
       <td>
        <label for="itemGroup" class="block text-sm text-gray-700">itemGroup:</label>
-        <select class="w-full border rounded-md" style="height:34px">
+        <select class="w-full border rounded-md" style="height:34px" @click="changeSelectedTipsModal('itemGroup')">
           <option value="">haha</option>
           <option value="">haha</option>
         </select>
       </td>
       <td>
         <label for="itemAccountGroup" class="block text-sm text-gray-700">itemAccountGroup:</label>
-        <select class="w-full border rounded-md" style="height:34px">
+        <select class="w-full border rounded-md" style="height:34px" @click="changeSelectedTipsModal('itemAccountGroup')">
           <option value="">haha</option>
           <option value="">haha</option>
         </select>
@@ -65,8 +65,8 @@ export default {
     </tr>
     <tr>
       <td colspan="2">
-         <label for="itemAccountGroup" class="block text-sm text-gray-700">itemAccountGroup:</label>
-        <select class="w-full border rounded-md" style="height:34px">
+         <label for="itemUnit" class="block text-sm text-gray-700">item Unit:</label>
+        <select class="w-full border rounded-md" style="height:34px" @click="changeSelectedTipsModal('itemUnit')">
           <option value="">haha</option>
           <option value="">haha</option>
         </select>
@@ -74,7 +74,7 @@ export default {
     </tr>
     <tr>
       <td>
-        <input type="checkbox" name="isActive" value="" style="padding-left:500px;" id="isActive">
+        <input type="checkbox" name="isActive" value="" style="padding-left:500px;" id="isActive" @click="changeSelectedTipsModal('isActive')">
         <label for="isActive" style="padding-left:5px;" >isActive</label>
       </td>
     </tr>

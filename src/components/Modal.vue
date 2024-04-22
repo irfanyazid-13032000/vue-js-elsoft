@@ -1,12 +1,6 @@
 <script>
 import TipsModal from './TipsModal.vue';
 export default {
-    data() {
-        return {
-            namaPanjang:'doni'
-            
-        }
-    },
     computed: {
         isAddMasterModalOpen() {
             return this.$store.state.isAddMasterModalOpen
@@ -26,10 +20,25 @@ export default {
        <slot name="form"></slot>
     </div>
     <TipsModal>
+       
         <template v-slot:messageTips>
-        <div v-if="1 == 1">
-            {{ selectedTipsModal }}
-            {{ namaPanjang }}
+        <div v-if="selectedTipsModal == 'code'">
+            <p style="text-align:center;">masukkan kode atau SKU untuk mempermudah pelacakan, contoh : HP/KK/LK/001</p>
+        </div>
+        <div v-if="selectedTipsModal == 'title'">
+            <p style="text-align:center;">isi title untuk item</p>
+        </div>
+        <div v-if="selectedTipsModal == 'itemGroup'">
+            <p style="">pilih item group untuk mengelompokkan item, agar kedepannya bisa menganalisa penjualan per item group tersebut. <br> contoh : produk lain-lain dan lain sebagainya</p>
+        </div>
+        <div v-if="selectedTipsModal == 'itemAccountGroup'">
+            <p style="">pilih item account group untuk menentukan account yg digunakan pada saat posting ke laporan keuangan. <br> contoh : produk lain-lain</p>
+        </div>
+        <div v-if="selectedTipsModal == 'itemUnit'">
+            <p style="">tentukan satuan yg akan digunakan untuk mendeskripsikan kemasan item tersebut. <br> contoh : PCS, BOX, CM dan lain sebagainya</p>
+        </div>
+        <div v-if="selectedTipsModal == 'isActive'">
+            <p style="">centang berarti mengaktifkan data tersebut agar bisa digunakan saat transaksi, atau hilangkan centang untuk menonaktifkan data tersebut dan tidak bisa digunakan saat transaksi</p>
         </div>
         </template>
     </TipsModal>

@@ -7,6 +7,10 @@ export default {
   methods: {
     closeModal() {
       this.$store.state.isAddMasterModalOpen = false
+    },
+    changeSelectedTipsModal(inputName) {
+      this.$store.state.isOpenTipsModal = true
+      this.$store.state.selectedTipsModal = inputName
     }
   }
 }
@@ -15,6 +19,7 @@ export default {
 
 <template>
 <Modal>
+  <template v-slot:form>
   <table style="border-spacing:7px; width:100%">
     <tr>
       <td style="border-bottom: 3px black solid; padding-bottom:4px" colspan="2">
@@ -34,12 +39,12 @@ export default {
     <tr>
       <td>
         <label for="code" class="block text-sm text-gray-700">code:</label>
-        <input type="text" id="code" name="code"  class="border rounded-md" style="height:34px; width:100%; padding-left:10px">
+        <input type="text" id="code" name="code"  class="border rounded-md" style="height:34px; width:100%; padding-left:10px" @click="changeSelectedTipsModal('code')">
       </td>
       <td>
        
       <label for="title" class="block text-sm text-gray-700">title:</label>
-      <input type="text" id="title" name="title"  class="w-full border rounded-md" style="height:34px;padding-left:10px">
+      <input type="text" id="title" name="title"  class="w-full border rounded-md" style="height:34px;padding-left:10px" @click="changeSelectedTipsModal('title')">
       </td>
     </tr>
     <tr>
@@ -82,14 +87,8 @@ export default {
       </td>
     </tr>
   </table>
+  </template>
 </Modal>
-
-
-
-
-
-
-
 </template>
 
 <style>

@@ -1,23 +1,38 @@
 <script>
+import TipsModal from './TipsModal.vue';
 export default {
+    data() {
+        return {
+            namaPanjang:'doni'
+            
+        }
+    },
     computed: {
         isAddMasterModalOpen() {
             return this.$store.state.isAddMasterModalOpen
+        },
+        selectedTipsModal() {
+            return this.$store.state.selectedTipsModal
         }
+    },
+    components: {
+        TipsModal
     }
 }
 </script>
 <template>
   <div :class="{'d-none':!isAddMasterModalOpen,'fixed':isAddMasterModalOpen}" class="inset-0 bg-black bg-opacity-25 flex justify-center items-center">
     <div  :class="{'d-none':!isAddMasterModalOpen,'flex':isAddMasterModalOpen}" class="w-400px flex-col bg-white p-6 rounded ">
-       <slot></slot>
+       <slot name="form"></slot>
     </div>
-<div  :class="{'d-none':!isAddMasterModalOpen,'':isAddMasterModalOpen}" style="background-color:white; width:250px; height:300px; z-index:10000; position:fixed;top:100px;left:1500px;border-radius:10px;">
-    <h3 style="text-align:center;padding:20px;">Tips :</h3>
-    <div style="padding:10px; font-weight:bold">
-        <p>memancing adalah kegiatan yang menyenangkan dilakukan oleh orang yang suka melamun memikirkan hidup</p>
-    </div>
-</div>
+    <TipsModal>
+        <template v-slot:messageTips>
+        <div v-if="1 == 1">
+            {{ selectedTipsModal }}
+            {{ namaPanjang }}
+        </div>
+        </template>
+    </TipsModal>
 </div>
 
 </template>

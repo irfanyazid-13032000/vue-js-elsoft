@@ -3,6 +3,11 @@ import Modal from '../components/Modal.vue'
 export default {
   components: {
     Modal
+  },
+  methods: {
+    closeModal() {
+      this.$store.state.isAddMasterModalOpen = false
+    }
   }
 }
 </script>
@@ -70,7 +75,7 @@ export default {
     </tr>
     <tr>
       <td>
-        <button style="width:80px;height:40px;border-radius:10px;background-color:#a083c9;font-weight:bold;font-size:16px;">BACK</button>
+        <button style="width:80px;height:40px;border-radius:10px;background-color:#a083c9;font-weight:bold;font-size:16px;" @click="closeModal">BACK</button>
       </td>
       <td style="text-align:right;">
         <button style="width:80px;height:40px;border-radius:10px;background-color:#797dd6;font-weight:bold;font-size:16px;">SAVE</button>

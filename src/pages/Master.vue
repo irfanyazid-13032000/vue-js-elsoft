@@ -3,18 +3,16 @@ import Sidebar from '../components/Sidebar.vue';
 // import Modal from '../components/Modal.vue'
 import AddMaster from '../components/AddMaster.vue'
 export default {
-  computed: {
-    status1() {
-      return this.$store.state.selectedMenu
-    }
-  },
   components: {
     Sidebar,
     AddMaster
   },
   methods: {
-    changeValue() {
+    changeSelectedMenu() {
       this.$store.state.selectedMenu = "master"
+      },
+      openModal() {
+        this.$store.state.isAddMasterModalOpen = true
     }
   },
 }
@@ -83,8 +81,8 @@ export default {
           <AddMaster></AddMaster>
 
 
-
       </div>
+    <button style="width:150px;height:40px;border-radius:10px;background-color:#ad6cc0;font-weight:bold;font-size:16px;margin:5px;" @click="openModal">Add Master Item</button>
    </slot>
   </Sidebar>
 
